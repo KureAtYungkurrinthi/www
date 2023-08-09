@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page demonstrating HTML forms</title>
+    </head>
+    <body>
+        <h1>A simple form</h1>
+        <form action="w01_results.html" method="POST">
+            
+        
+            <h1>Tell us a bit about yourself</h1>
+
+            <p>Please provide the following information:<br> 
+                Name: <input type="text" name="theName" value="Enter your name here"><br>
+                What is your room location and number?<br>
+                <input type="text" name="relationship" size=128>
+            </p>
+
+            <p>Please select a snack:
+                <br>Choose your drink:
+                <input type="radio" name="Drink" value="Coffee" Checked> Coffee
+                <input type="radio" name="Drink" value="Tea"> Tea
+                <input type="radio" name="Drink" value="Choc">Hot Chocolate
+                <br>Options:
+                <input type="checkbox" name="milk" value=milk> Milk
+                <input type="checkbox" name="sugar" value=sugar> Sugar
+                <br>
+                <label id="ChooseSnack">Choose your Snack:</label>
+                <select name="food">
+                <option>Ginger Biscuit $1.50
+                <option>Lemon Cake $2
+                <option>Sugar free Chocolate Biscuit $1.25
+                </select>
+            </p>
+
+            
+
+            <p>When you are ready to submit your feedback press the following button.<br>
+                <input name="submitBtn" type="submit" value="Submit">
+            </p>
+        </form>
+    </body>
+</html>
