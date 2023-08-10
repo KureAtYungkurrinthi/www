@@ -1,0 +1,83 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #263238;
+}
+
+body {
+    background-image: url(../images/phone.png);
+    background-position: top 60px right;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    position: relative;
+    top: 60px;
+    left: 60px;
+    max-width: 600px;
+}
+
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: normal;
+    position: relative;
+    top: 10px;
+}
+
+form {
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+input,
+textarea {
+    width: 500px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d4dadc;
+    margin: 3px 0;
+    padding: 6px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #263238;
+}
+
+input[type="submit"] {
+    width: auto;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    background-color: #1565c0;
+    padding: 10px 25px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0d47a1;
+}
+
+.privacy-policy {
+    font-size: 12px;
+}
+
+.privacy-policy>a {
+    text-decoration: none;
+    color: #1565c0;
+}
+
+.privacy-policy>a:visited {
+    color: #1565c0;
+}
+
+.privacy-policy>a:hover {
+    text-decoration: underline;
+}
