@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Brett Wilkinson" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script src="../scripts/ex03.js" defer></script>
+    <title>JavaScript - Examples</title>
+  </head>
+  <body>
+    <h1>Riddle me this...</h1>
+
+    <div id="riddle" class="riddleBody">
+      <p>
+        "I have keys but open no locks,<br />
+        I have space but no room,<br />
+        You can enter, but not go out."
+      </p>
+    </div>
+    <p>What am I?</p>
+    <button id="getHint">Get Hint</button>
+    <div id="hint" class="riddleHint hidden">
+      <p>
+        Consider the complexities of interactive computer systems and the way we
+        as users interact with these systems.
+      </p>
+    </div>
+    <label>What is your guess?</label>
+    <input type="text" id="guess" name="guess" />
+    <div id="solution" class="riddleSoln hidden">
+      <p>The answer is... a keyboard!</p>
+    </div>
+  </body>
+</html>
+

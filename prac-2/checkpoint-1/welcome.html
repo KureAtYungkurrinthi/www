@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-  </head>
-  <body>
-    <div>
-      <h1><b>Welcome to the WebDev quiz.</b></h1>
-      <form>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Wang Sheng Fan" />
+    <meta name="description" content="Practical 2" />
+    <title>Practical 2</title>
+    <link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>
+    <h1><b>Welcome to the WebDev quiz.</b></h1>
+    <form>
         <div>
-            <label>What is your name?</label>
-            <input type="text" name="name" placeholder="Required" />
-
-            <label>How old are you?</label>
-            <input type="text" name="age" />
-
-            <label>What is your email address?</label>
-            <input type="text" name="email" />
+            <label>What is your name?</label> <br>
+            <input type="text" name="name" minlength="2" placeholder="Required" /> <br>
+            <label>How old are you?</label> <br>
+            <input type="number" name="age" min="10" max="100" /> </br>
+            <label>What is your email address?</label> <br>
+            <input type="email" name="email" /> <br>
         </div>
-        <input type="button" value="Begin" />
-      </form>
-    </div>
-  </body>
+        <input type="submit" value="Begin" />
+    </form>
+</body>
+
 </html>
