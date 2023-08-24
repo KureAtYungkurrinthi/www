@@ -1,6 +1,7 @@
 function init()
 {
-    console.log("Hello, Practical 2"); // You can delete this.
+    const player = document.getElementById("player-name");
+    player.innerText = getUrlParam("name"); 
 }
 
 init();
