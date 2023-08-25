@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="author" content="Wang Sheng Fan" />
+    <meta name="author" content="Wang Shengfan" />
     <meta name="description" content="Practical 2" />
     <title>Practical 2</title>
     <link rel="stylesheet" href="styles/style.css" />
@@ -14,13 +14,13 @@
     <form action="quiz.html" method="get">
         <div>
             <label>What is your name?</label> <br>
-            <input type="text" name="name" minlength="2" placeholder="Required" /> <br>
+            <input type="text" name="name" minlength="2" placeholder="Required" required /> <br>
             <label>How old are you?</label> <br>
-            <input type="number" name="age" min="10" max="100" /> <br>
+            <input type="number" name="age" min="10" max="100" required /> <br>
             <label>What is your email address?</label> <br>
-            <input type="email" name="email" /> <br>
+            <input type="email" name="email" required /> <br>
         </div>
-        <input class="button" type="submit" value="Begin"  />
+        <input class="button" type="submit" value="Begin" />
     </form>
 </body>
 
