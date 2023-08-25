@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Wang Sheng Fan" />
+    <meta name="description" content="Practical 2" />
+    <title>Practical 2</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script src="scripts/provided-script.js" defer></script>
+    <script src="scripts/my-script.js" defer></script>
+</head>
+
+<body>
+    <h1>Hello, <b>Player</b>. Let's begin.</h1>
+
+    <div id="quiz">
+        <p id="question-number">Question N</p>
+        <p id="question">Question text should appear here</p>
+        <ul>
+            <li>
+                <input type="radio" name="choices" id="A" value="A" />
+                <label for="A" id="choice-A">Choice A</label>
+            </li>
+            <li>
+                <input type="radio" name="choices" id="B" value="B" />
+                <label for="B" id="choice-B">Choice B</label>
+            </li>
+            <li>
+                <input type="radio" name="choices" id="C" value="C" />
+                <label for="C" id="choice-C">Choice C</label>
+            </li>
+        </ul>
+    </div>
+
+    <div id="results">
+        <p>Your final score was ?</p>
+    </div>
+
+    <input class="button" type="button" value="Next" />
+</body>
+
+</html>
