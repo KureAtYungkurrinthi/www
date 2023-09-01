@@ -1,0 +1,3 @@
+[submodule "GTLM"]
+	path = GTLM
+	url = git@github.com:KureAtYungkurrinthi/GTLM.git
