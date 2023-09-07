@@ -18,16 +18,21 @@
 
     $sql = "SELECT id, name FROM Task WHERE completed=0;";
     if ($result = mysqli_query($conn, $sql)) {
-        if (mysqli_num_rows($result) >= 1) {
+        $numRows = mysqli_num_rows($result);
+        if ($numRows < 1) {
+            echo "<h2>No tasks</h2>";
+        } else {
+            if ($numRows == 1) {
+                echo "<h2>1 task</h2>";
+            } else {
+                echo "<h2>" . $numRows . " tasks</h2>";
+            }
             echo '<ul id="task">';
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<li><a href="complete.php?id=' . $row["id"] . '">' . $row["name"] . '</a></li>';
             }
             echo "</ul>";
-        } else {
-            echo "Task list is empty.";
         }
-
         mysqli_free_result($result);
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
