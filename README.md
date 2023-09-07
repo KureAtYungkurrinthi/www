@@ -1,4 +1,4 @@
-# COMP2030/COMP9030 Human Factors for Interactive and Web-Based Systems Assessment
+# COMP2030/COMP9030 Human Factors for Interactive and Web-Based Systems
 
 Folder structure:
 
