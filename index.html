@@ -13,39 +13,53 @@
 </head>
 
 <body>
-
     <div class="container">
-
         <div class="top-bar">
-            <h1>Flinders Care</h1>
+            <img class="logo" alt="Omnifood logo" src="images/logo.png" height="80" width="250" />
+
             <nav class="main-nav">
-                <a class="account dropbtn" href="#">Account 🔽</a>
+                <p class="account dropbtn" href="#">Account ≣</p>
                 <div id="myDropdown" class="dropdown-content">
                     <a class="account-dropdown" href="#">Account</a>
                     <a class="menu-dropdown" href="#">Log out</a>
                 </div>
             </nav>
         </div>
+    </div>
+
+    <ul class="menu">
+        <li><a href="#">🧮Dashboard</a></li>
+        <li><a class="project" href="index.html">📈Project</a></li>
+        <li><a href="backlogs.html">⌨️Backlogs</a></li>
+        <li><a href="#">🗓️Calendar</a></li>
+    </ul>
+
+    <div class="main">
+        <p class="pj-view">Project</p>
 
         <main>
-            <ul class="menu">
-                <li><a href="#">🧮Dashboard</a></li>
-                <li><a class="project" href="index.html">📈Project</a></li>
-                <li><a href="backlogs.html">⌨️Backlogs</a></li>
-                <li><a href="#">🗓️Calendar</a></li>
-            </ul>
+            <header>
+                <h1>Task Manager</h1>
+                <form id="new-task-form">
+                    <input type="text" name="new-task-input" id="new-task-input" placeholder="Add a task..." />
+                    <input type="submit" id="new-task-submit" value="➕Add task" />
+                </form>
+            </header>
 
-            <p class="pj-view">Project view</p>
+            <section class="task-list">
+                <div id="tasks">
+                </div>
+            </section>
         </main>
 
-        <footer>
-            <p id="copyright" class="copyright">
-                Copyright &copy; 2023 by Flinders Care.
-            </p>
-        </footer>
+        <button id="saveButton">Save</button>
+    </div>
 
-    </div> <!-- End of .container -->
-
+    <footer>
+        <p id="copyright" class="copyright">
+            Copyright &copy; 2023 by Flinders Care.
+        </p>
+    </footer>
 </body>
 
 </html>

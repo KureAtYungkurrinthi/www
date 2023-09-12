@@ -4,80 +4,18 @@
     box-sizing: border-box;
 }
 
-/*****************/
-/* GENERAL COMPONENTS */
-/*****************/
+/** General Components **/
 body {
     font-family: Arial, Helvetica, sans-serif;
     color: #343a40;
     font-size: 24px;
     min-height: 100vh;
     font-weight: bold;
+}
+
+.container {
     width: 100%;
     margin: 0 auto;
-}
-
-/*****************/
-/* header */
-/*****************/
-.top-bar {
-    background-color: #fdf2e9;
-    border: 0.5px solid #fdf2e9;
-    padding: 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    /* Make the header is above other elements */
-}
-
-h1 {
-    margin-left: 15px;
-    color: #f76707;
-}
-
-.account {
-    font-size: 15px;
-    margin-right: 15px;
-    text-decoration: none;
-}
-
-.menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 200;
-    width: 180px;
-    background-color: #f1f1f1;
-    font-size: 15px;
-    position: fixed;
-    top: 88px;
-    bottom: 0;
-}
-
-.menu li a {
-    display: block;
-    color: #000;
-    padding: 8px 16px;
-    padding-right: 50px;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-}
-
-.menu li a:hover,
-:visited {
-    background-color: #555;
-    color: white;
-}
-
-.pj-view {
-    margin-left: 180px;
-    padding: 5px 0px;
-    font-size: 18px;
-    margin-top: 90px;
-    font-weight: bold;
 }
 
 .copyright {
@@ -89,14 +27,35 @@ h1 {
     font-weight: normal;
 }
 
-/* Dropdown Button */
+/** Top Bar **/
+.top-bar {
+    background-color: #fdf2e9;
+    border: 1px solid #fdf2e9;
+    padding: 0px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.account {
+    font-size: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    color: #343a40;
+    cursor: pointer;
+}
+
+/* Account Dropdown */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 50px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    /* z-index: 1; */
 }
 
 /* Links inside the dropdown */
@@ -107,10 +66,11 @@ h1 {
     display: block;
     font-size: 12px;
     font-weight: normal;
+    font-weight: 500;
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #f8f9fa;
 }
 
 /* Show the dropdown menu*/
@@ -120,6 +80,240 @@ h1 {
 
 .account {
     color: #343a40;
+}
+
+/** Menu List **/
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+
+    background-color: #fdf2e9;
+    font-size: 15px;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    border: 1px solid #fdf2e9;
+}
+
+.menu li a {
+    display: block;
+    color: #000;
+    padding: 8px 1px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.menu li a:hover,
+:visited {
+    background-color: #555;
+    color: white;
+}
+
+/**Page-Text  **/
+.pj-view {
+    margin-left: 160px;
+    padding: 5px 0px;
+    font-size: 18px;
+    margin-top: 85px;
+    font-weight: normal;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+/** Task Manager **/
+main {
+    flex: 1 1 0%;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+    font-size: 18px;
+}
+
+#new-task-form {
+    display: flex;
+}
+
+input,
+button {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+#new-task-input {
+    flex: 1 1 0%;
+    background-color: #f1f3f5;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    color: black;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+#new-task-input::placeholder {
+    color: #343a40;
+}
+
+#new-task-submit {
+    color: #ec4899;
+    font-size: 1.25rem;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #f76707, #f76707);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+#new-task-submit:hover {
+    opacity: 0.8;
+}
+
+#new-task-submit:active {
+    opacity: 0.6;
+}
+
+.task-list {
+    padding: 1rem;
+}
+
+.task-list h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #343a40;
+    margin-bottom: 1rem;
+}
+
+#tasks .task {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid #e67700;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.task .content {
+    flex: 1 1 0%;
+}
+
+.task .content .text {
+    color: #343a40;
+    font-size: 1.125rem;
+    width: 100%;
+    display: block;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+.task .content .text:not(:read-only) {
+    color: #ec4899;
+}
+
+.task .actions {
+    display: flex;
+    margin: 0 -0.5rem;
+}
+
+.task .actions button {
+    cursor: pointer;
+    margin: 0 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.4s;
+    font-size: 15px;
+}
+
+.task .actions button:hover {
+    opacity: 2;
+}
+
+.task .actions button:active {
+    opacity: 2;
+}
+
+.task .actions .edit {
+    background-image: linear-gradient(to right, #1864ab, #1864ab);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.task .actions .delete {
+    color: crimson;
+}
+
+/** Save button **/
+#saveButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f76707;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#saveButton:hover {
+    background-color: #66a80f;
+    color: #fff;
+}
+
+#saveButton:focus {
+    outline: none;
+}
+
+/** STATUS **/
+
+#tasks .task.status-priority {
+    background-color: #8ce99a;
+    border: 1px solid #8ce99a;
+}
+
+#tasks .task.status-active {
+    background-color: #d3f9d8;
+    border: 1px solid #d3f9d8;
+}
+
+#tasks .task.status-completed {
+    background-color: #dee2e6;
+    border: 1px solid #dee2e6;
+}
+
+/** Resident Name **/
+.title {
+    font-size: 15px;
+    font-weight: normal;
+    font-weight: 500;
+}
+
+.details {
+    color: #343a40;
+}
+
+.status-select,
+.assigned-to-select {
+    border: 0.5px solid #dee2e6;
+    border-radius: 1rem;
+}
+
+.change {
+    font-size: 1px;
 }
 
 /*****************/
