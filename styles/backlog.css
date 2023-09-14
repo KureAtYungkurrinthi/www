@@ -1,0 +1,30 @@
+main {
+    margin-left: 200px;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+main li {
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 10px;
+}
+
+main ul {
+    list-style: none;
+    margin-left: 20px;
+}
+
+.completed-tasks li {
+    background-color: #e0e0e0;
+    text-decoration: line-through;
+}
+
+.assignee {
+    color: #666;
+    margin-left: 10px;
+}

@@ -1,0 +1,121 @@
+/**********************/
+/* General Components */
+/**********************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #343a40;
+    font-size: 24px;
+    min-height: 100vh;
+    font-weight: bold;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/**************************/
+/* Header Navigation Bar  */
+/**************************/
+header {
+    background-color: #fdf2e9;
+    border: 1px solid #fdf2e9;
+    padding: 0px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+#logo {
+    height: 80px;
+    width: 250px;
+}
+
+#avatar {
+    height: 25px;
+    width: 25px;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+#dropdown-button {
+    font-size: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    color: #343a40;
+    background-color: #fdf2e9;
+    cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+#dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the dropdown */
+#dropdown-content a {
+    color: #343a40;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    font-weight: 500;
+}
+
+#dropdown-content a:hover {
+    background-color: #f8f9fa;
+}
+
+/************************/
+/* Side Navigation Bar  */
+/************************/
+#side-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+
+    background-color: #fdf2e9;
+    font-size: 15px;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    border: 1px solid #fdf2e9;
+}
+
+#side-nav a {
+    display: block;
+    color: #000;
+    padding: 8px 1px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+#side-nav a:hover,
+.selected {
+    background-color: #555;
+    color: white;
+}
+
+/******************************/
+/* Footer (Copyright Notice)  */
+/******************************/
+footer {
+    margin-left: 0;
+    font-size: 12px;
+    position: fixed;
+    right: 0;
+    bottom: 5px;
+    font-weight: normal;
+}
