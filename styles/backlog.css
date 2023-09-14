@@ -19,12 +19,26 @@ main ul {
     margin-left: 20px;
 }
 
-.completed-tasks li {
-    background-color: #e0e0e0;
-    text-decoration: line-through;
-}
-
 .assignee {
     color: #666;
     margin-left: 10px;
+}
+
+#saveBtn {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+
+#saveBtn:hover {
+    background-color: #45a049;
 }
