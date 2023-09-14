@@ -46,40 +46,25 @@
     <!-- The above will should be referenced from a php script in Cycle 3. -->
 
     <main>
-        <div class="task-top-bar">
-            <span>Task Location: <strong id="task-location">Ward C</strong></span>
-            <span>Assigned To: <strong id="task-person">John Smith</strong></span>
-        </div>
-
+        <div class="task-header">
+            <span>Task Location: <strong id="task-location" contenteditable="true"></strong></span>
+            <span>Assigned To: <strong id="task-person" contenteditable="true"></strong></span>
+            <span><button id="save-btn">Save</button></span>
+        </div>        
+    
         <div class="task-info">
             <h2>Description:</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </p>
-
+            <p id="task-description" contenteditable="true"></p>
+    
             <h2>Details:</h2>
-            <p>
-                Ut consequat semper viverra nam libero justo. Risus quis varius quam quisque id diam vel. Augue neque
-                gravida in fermentum et sollicitudin ac orci. Id leo in vitae turpis massa sed elementum. Pharetra massa
-                massa ultricies mi. Ornare quam viverra orci sagittis. Ullamcorper malesuada proin libero nunc. Amet
-                risus nullam eget felis eget nunc lobortis mattis. Nisl purus in mollis nunc sed id semper risus in.
-                Mauris cursus mattis molestie a iaculis. Consequat interdum varius sit amet mattis vulputate enim.
-            </p>
+            <p id="task-details" contenteditable="true"></p>
         </div>
-
+    
         <div class="sub-tasks">
             <h2>Sub-Tasks:</h2>
-            <ul>
-                <li>Sub-Task 1</li>
-                <li>Sub-Task 2</li>
-                <li>Sub-Task 3</li>
-            </ul>
+            <ul id="sub-tasks-list" contenteditable="false"></ul>            
         </div>
-    </main>
+    </main>    
 </body>
 
 </html>
