@@ -23,3 +23,11 @@ You will demonstrate the initial functionality of your web application.  This pr
 During your demonstration you will need to have one group member "driving" the interactions while other group members talk about features, implementations/changes from the design, and the technologies utilised.  You will also be expected to show your source code and clearly demonstrate good structure, formatting, naming conventions and code efficiency.
 
 Before your oral presentation during your tutorial you will be required to submit a zip of your project to this assignment submission box.
+
+## Full Stack Web Experience
+
+You will be required to demonstrate the final implementation of the GTLM system.  This will include integration with backend database and suitable PHP scripting.  This prototype beta should demonstrate a functional system supported by HTML, CSS, JavaScript, and PHP.  Your web application should be successfully running on an AMPPS server and demonstrating real time interactions.
+
+During your demonstration you will need to have one group member "driving" the interactions while other group members talk about features, implementations/changes from the previous phase, and the technologies utilised.  You will also be expected to show your source code and clearly demonstrate good structure, formatting, naming conventions and code efficiency.
+
+Before your oral presentation during your tutorial you will be required to submit a zip of your project to this assignment submission box.
