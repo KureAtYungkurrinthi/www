@@ -11,8 +11,8 @@
     <script src="scripts/menu.js" defer></script>
 
     <meta name="author" content="Group 5"/>
-    <meta name="description" content="Backlog"/>
-    <title>Backlog</title>
+    <meta name="description" content="Rooms"/>
+    <title>Rooms</title>
 </head>
 
 <body>

@@ -1,0 +1,55 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.title h1 {
+    font-size: 28px;
+}
+
+.page-desc, .list-info, .more-details {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.resident-details, .sub-tasks {
+    width: 45%;
+}
+
+.resident-details {
+    border-right: 1px solid #e0e0e0;
+}
+
+.avatar {
+    display: block;
+    margin: 10px 0;
+}
+
+.desc label, .desc textarea, .sub-tasks h1 {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#saveButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f76707;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#saveButton:hover {
+    background-color: #66a80f;
+}
