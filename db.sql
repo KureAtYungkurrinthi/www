@@ -3,9 +3,6 @@ SET @@AUTOCOMMIT = 1;
 DROP DATABASE IF EXISTS FlindersCare;
 CREATE DATABASE FlindersCare;
 
-CREATE user IF NOT EXISTS dbadmin@localhost;
-GRANT all privileges ON FlindersCare TO dbadmin@localhost;
-
 USE FlindersCare;
 
 CREATE TABLE Teams (
@@ -65,6 +62,14 @@ CREATE TABLE PatientDocuments (
                                   uploadDate TIMESTAMP,
                                   FOREIGN KEY (patientID) REFERENCES Patients(patientID)
 ) AUTO_INCREMENT = 1;
+
+CREATE user IF NOT EXISTS dbadmin@localhost;
+GRANT all privileges ON FlindersCare.Teams TO dbadmin@localhost;
+GRANT all privileges ON FlindersCare.Users TO dbadmin@localhost;
+GRANT all privileges ON FlindersCare.Rooms TO dbadmin@localhost;
+GRANT all privileges ON FlindersCare.Patients TO dbadmin@localhost;
+GRANT all privileges ON FlindersCare.Tasks TO dbadmin@localhost;
+GRANT all privileges ON FlindersCare.PatientDocuments TO dbadmin@localhost;
 
 INSERT INTO Teams VALUES
                       (1, 'Administrator', 'Administrator Team'),
