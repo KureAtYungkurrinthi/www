@@ -11,8 +11,5 @@ function setMenuSelected() {
 
 setMenuSelected();
 
-// Populate Header navigation bar account name
-document.getElementById('username').innerHTML = "Maggie Reynolds";
-
 // Update footer year
 document.getElementById('currentYear').innerHTML = new Date().getFullYear();

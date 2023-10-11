@@ -1,51 +1,3 @@
-<?php
-// Database connection details
-$host = "localhost";
-$username = "root";
-$password = 12345;
-$dbname = "flinderscare";
-
-// Establish database connection
-$conn = new mysqli($host, $username, $password, $dbname);
-
-// Check for connection errors
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["pass"];
-
-    // Sanitize user inputs to prevent SQL injection
-    $email = mysqli_real_escape_string($conn, $email);
-    $password = mysqli_real_escape_string($conn, $password);
-
-    // Query to check if the user exists in the 'users' table
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 1) {
-        // User found, redirect to a success page or perform desired actions
-        // For example, you can set a session variable to indicate the user is logged in
-        // User found, fetch the user's name from the database
-        $row = $result->fetch_assoc();
-        session_start();
-        $_SESSION["user_email"] = $email;
-        $_SESSION["user_name"] = $row['firstName'];
-        // Redirect to a success page
-        header("Location: index.php");
-        exit();
-    } else {
-        // Invalid credentials, display an error message
-        echo "Invalid email or password. Please try again.";
-    }
-
-    // Close the database connection
-    $conn->close();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" name="email" placeholder="Enter Email" required />
         </label>
         <label> Password
-            <input type="password" name="pass" placeholder="Enter Password" required />
+            <input type="password" name="password" placeholder="Enter Password" required />
         </label>
         <button type="submit">Login</button>
         <label id="remember">
@@ -75,3 +27,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["email"]) && isset($_POST["password"])) {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        require_once "includes/dbConnect.php";
+
+        // Select the user credentials from the database
+        $sql = "SELECT * FROM Users WHERE email=?;";
+        $stmt = mysqli_stmt_init($conn);
+
+        if (mysqli_stmt_prepare($stmt, $sql)) {
+            mysqli_stmt_bind_param($stmt, 's', $email);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+
+            if ($row = mysqli_fetch_assoc($result)) {
+                if ($password == $row['password']) {
+                    // Start a session and redirect the user to a new page
+                    session_start();
+                    $_SESSION["user_email"] = $email;
+                    $_SESSION["user_name"] = $row['firstName'] . " " . $row['lastName'];
+                    header("Location: index.php");
+                    exit();
+                }
+            }
+            echo "Invalid email or password. Please try again.";
+        } else {
+            echo "SQL statement failed";
+        }
+    }
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+}
