@@ -29,29 +29,31 @@ CREATE TABLE Rooms (
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE Patients (
-                          patientID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                          patientID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                           firstName VARCHAR(50),
                           lastName VARCHAR(50),
+                          gender ENUM('Male', 'Female', 'Other'),
                           DOB DATE,
                           admitDate DATE,
                           dischargeDate DATE,
                           roomID INT,
+                          patientDetails TEXT,
+                          notes TEXT,
                           FOREIGN KEY (roomID) REFERENCES Rooms(roomID)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE Tasks (
-                       taskID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                       taskID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                       taskName VARCHAR(100),
                        taskDescription TEXT,
                        assigneeTeamID INT,
                        patientID INT,
-                       roomID INT,
-                       createdAt TIMESTAMP,
+                       createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                        deadline DATE,
                        status ENUM('Pending', 'In Progress', 'Completed'),
                        priority ENUM('High', 'Medium', 'Low'),
                        FOREIGN KEY (assigneeTeamID) REFERENCES Teams(teamID),
-                       FOREIGN KEY (patientID) REFERENCES Patients(patientID),
-                       FOREIGN KEY (roomID) REFERENCES Rooms(roomID)
+                       FOREIGN KEY (patientID) REFERENCES Patients(patientID)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE PatientDocuments (
@@ -90,16 +92,16 @@ INSERT INTO Rooms (roomNumber, roomType) VALUES
                       ('104', 'Regular'),
                       ('105', 'VIP');
 
-INSERT INTO Patients (firstName, lastName, DOB, admitDate, dischargeDate, roomID) VALUES
-                      ('John', 'Doe', '1950-01-15', '2023-01-10', NULL, 1),
-                      ('Jane', 'Doe', '1945-03-20', '2023-01-12', NULL, 2),
-                      ('Jim', 'Beam', '1960-07-22', '2023-02-05', NULL, 3),
-                      ('Jack', 'Daniels', '1935-11-30', '2023-02-10', NULL, 4),
-                      ('Jill', 'White', '1925-05-17', '2023-03-02', NULL, 5);
+INSERT INTO Patients (firstName, lastName, gender, DOB, admitDate, dischargeDate, roomID, patientDetails, notes) VALUES
+                      ('John', 'Doe', 'Male', '1950-01-15', '2023-01-10', NULL, 1, 'Patient has chronic pain', 'Needs frequent monitoring'),
+                      ('Jane', 'Doe', 'Female', '1945-03-20', '2023-01-12', NULL, 2, 'Heart patient', 'Monitor heart rate'),
+                      ('Jim', 'Beam', 'Male', '1960-07-22', '2023-02-05', NULL, 3, 'Undergoing physiotherapy', 'Mild exercise only'),
+                      ('Jack', 'Daniels', 'Male', '1935-11-30', '2023-02-10', NULL, 4, 'Asthmatic patient', 'Keep inhaler handy'),
+                      ('Jill', 'White', 'Female', '1925-05-17', '2023-03-02', NULL, 5, 'Requires frequent check-ups', 'Consider moving to VIP room');
 
-INSERT INTO Tasks (taskDescription, assigneeTeamID, patientID, roomID, createdAt, deadline, status, priority) VALUES
-                      ('Administer medication', 2, 1, 1, '2023-04-01 09:00:00', '2023-04-01', 'Pending', 'High'),
-                      ('Routine check-up', 2, 2, 2, '2023-04-02 10:00:00', '2023-04-02', 'Pending', 'Medium'),
-                      ('Daily physiotherapy', 2, 3, 3, '2023-04-03 11:00:00', '2023-04-03', 'In Progress', 'Low'),
-                      ('Bed cleaning', 3, 4, 4, '2023-04-04 12:00:00', '2023-04-04', 'Completed', 'Low'),
-                      ('Administer vaccine', 2, 5, 5, '2023-04-05 13:00:00', '2023-04-05', 'Pending', 'High');
+INSERT INTO Tasks (taskName, taskDescription, assigneeTeamID, patientID, createdAt, deadline, status, priority) VALUES
+                      ('Medication', 'Administer medication', 2, 1, '2023-04-01 09:00:00', '2023-04-01', 'Pending', 'High'),
+                      ('Check-up', 'Routine check-up', 2, 2, '2023-04-02 10:00:00', '2023-04-02', 'Pending', 'Medium'),
+                      ('Physiotherapy', 'Daily physiotherapy', 2, 3, '2023-04-03 11:00:00', '2023-04-03', 'In Progress', 'Low'),
+                      ('Cleaning', 'Bed cleaning', 3, 4, '2023-04-04 12:00:00', '2023-04-04', 'Completed', 'Low'),
+                      ('Vaccination', 'Administer vaccine', 2, 5, '2023-04-05 13:00:00', '2023-04-05', 'Pending', 'High');
