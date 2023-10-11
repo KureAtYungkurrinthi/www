@@ -1,0 +1,131 @@
+
+#add-user-form {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form_title {
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+    margin: 10px;
+}
+
+#add-user-form .input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#add-user-form .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#add-user-form .submit-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#add-user-form .submit-button:hover {
+    background-color: #555;
+}
+
+/* Add Group Form Styles */
+#add-team-form {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#add-team-form .form-title {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#add-team-form .input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#add-team-form .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#add-team-form .submit-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#add-team-form .submit-button:hover {
+    background-color: #555;
+}
+
+/* Styles for the Users and Teams table */
+#users-teams-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#users-teams-table th,
+#users-teams-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#users-teams-table th {
+    background-color: #f2f2f2;
+}
+
+/* Styles for the Teams table */
+#teams-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#teams-table th,
+#teams-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#teams-table th {
+    background-color: #f2f2f2;
+}
+
+.del-button {
+    text-decoration: none;
+    display: inline-block;
+    background-color: red;
+    color: white;
+    /* border: none; */
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}

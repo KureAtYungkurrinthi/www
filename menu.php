@@ -1,9 +1,21 @@
 <header>
     <a href="index.php">
-        <img id="logo" src="images/logo.png" alt="Flinders Care"/>
+        <img id="logo" src="images/logo.png" alt="Flinders Care" />
     </a>
 
-    <a id="username" href="users.php"> Username</a>
+    <?php
+
+    if (isset($_SESSION["user_name"])) {
+        $username = $_SESSION["user_name"];
+        $e = $_SESSION["user_email"];
+        echo '<a id="username" href="users.php">' . $username . '</a>';
+    } else {
+        // If the user is not logged in, you can display a default or login link here.
+        header("Location: login.php");
+        echo '<a id="username" href="login.php">Login</a>';
+    }
+    ?>
+
 </header>
 
 <nav id="side-nav">

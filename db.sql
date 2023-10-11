@@ -80,7 +80,7 @@ INSERT INTO Users VALUES
                       (1, 'John', 'Doe', 'john@example.com', 'password1', 1, 'Admin'),
                       (2, 'Jane', 'Doe', 'jane@example.com', 'password2', 2, 'Nurse'),
                       (3, 'Jim', 'Beam', 'jim@example.com', 'password3', 2, 'Doctor'),
-                      (4, 'Jack', 'Daniels', 'jack@example.com', 'password10', 3, 'Staff');
+                      (4, 'Jack', 'Daniels', 'jack@example.com', 'password10', 3, 'Cleaner');
 
 INSERT INTO Rooms VALUES
                       (1, '101', 'Regular'),
