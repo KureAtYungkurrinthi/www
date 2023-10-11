@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <?php require_once "menu.php"; ?>
+    <?php require_once "includes/menu.php"; ?>
     <?php
     // Database connection details
     $host = "localhost";

@@ -36,7 +36,7 @@ header #username {
     position: fixed;
     left: 0;
     top: 0;
-    padding-top: 80px;  /* offset for the header */
+    padding-top: 80px; /* offset for the header */
     z-index: 999;
 }
 
@@ -65,5 +65,5 @@ footer {
 
 /* Define styles for the main content */
 main {
-    padding: 100px 30px 30px 180px;  /* offset for header and nav */
+    padding: 100px 30px 30px 180px; /* offset for header and nav */
 }
