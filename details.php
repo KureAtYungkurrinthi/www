@@ -90,7 +90,6 @@ if (isset($_GET['roomID'])) {
             </form>
 
             <?php
-            // Use prepared statements to prevent SQL injection
             $sql = "SELECT * FROM Patients WHERE roomID = ? AND dischargeDate IS NULL;";
             if ($stmt = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($stmt, "i", $roomID);
@@ -128,10 +127,7 @@ if (isset($_GET['roomID'])) {
             <h1>Detailed Information</h1>
 
             <?php
-            // Assuming $patientID is retrieved from GET or other sources.
-            $patientID = isset($_GET['patientID']) ? mysqli_real_escape_string($conn, $_GET['patientID']) : 1; // Default to 1
-
-            $sql = "SELECT * FROM Patients WHERE patientID=$patientID;";
+            $sql = "SELECT * FROM Patients WHERE roomID=$roomID AND dischargeDate IS NULL;";
             if ($result = mysqli_query($conn, $sql)) {
                 if ($row = mysqli_fetch_assoc($result)) {
                     echo '<form id="details-form" action="update_details.php" method="post">';
