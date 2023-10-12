@@ -2,13 +2,13 @@
 require_once "includes/sessionValidator.php";
 require_once "includes/dbConnect.php";
 
-//if (isset($_GET['roomID'])) {
-//    $roomId = $_GET['roomID'];
-//    $roomId = mysqli_real_escape_string($conn, $roomId);
-//} else {
-//    echo "Room ID is not specified.";
-//    exit;
-//}
+if (isset($_GET['roomID'])) {
+    $roomID = $_GET['roomID'];
+    $roomID = mysqli_real_escape_string($conn, $roomID);
+} else {
+    echo "Room ID is not specified.";
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +37,6 @@ require_once "includes/dbConnect.php";
         <section id="room-information">
             <h1>Room Information</h1>
             <?php
-            $roomID = isset($_GET['roomID']) ? mysqli_real_escape_string($conn, $_GET['roomID']) : 1; // Fallback to 1 as default room ID if not provided
-
             $sql = "SELECT roomNumber, roomType FROM Rooms WHERE roomID=$roomID;";
 
             if ($result = mysqli_query($conn, $sql)) {
@@ -61,8 +59,6 @@ require_once "includes/dbConnect.php";
         <section id="patient-information">
             <h1>Patient Information</h1>
             <?php
-            $roomID = isset($_GET['roomID']) ? mysqli_real_escape_string($conn, $_GET['roomID']) : 1; // Default to 1
-
             $sql = "SELECT * FROM Patients WHERE roomID=$roomID AND dischargeDate IS NULL;";
             if ($result = mysqli_query($conn, $sql)) {
                 if ($row = mysqli_fetch_assoc($result)) {
@@ -94,8 +90,6 @@ require_once "includes/dbConnect.php";
             </form>
 
             <?php
-            $roomID = 1; // Retrieve this dynamically based on your application context
-
             // Use prepared statements to prevent SQL injection
             $sql = "SELECT * FROM Patients WHERE roomID = ? AND dischargeDate IS NULL;";
             if ($stmt = mysqli_prepare($conn, $sql)) {
