@@ -6,7 +6,13 @@ function fetchTasksByStatus($status) {
     global $conn;
     $tasks = [];
 
-    $sql = "SELECT * FROM Tasks WHERE status=? ORDER BY deadline;";
+    $sql = "SELECT Tasks.*, Teams.teamName, Patients.firstName as patientFirstName, Patients.lastName as patientLastName, Rooms.roomNumber, Rooms.roomType 
+            FROM Tasks 
+            LEFT JOIN Teams ON Tasks.assigneeTeamID = Teams.teamID 
+            LEFT JOIN Patients ON Tasks.patientID = Patients.patientID 
+            LEFT JOIN Rooms ON Patients.roomID = Rooms.roomID 
+            WHERE Tasks.status=? 
+            ORDER BY Tasks.deadline;";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $status);
 
@@ -17,12 +23,13 @@ function fetchTasksByStatus($status) {
         }
         mysqli_free_result($result);
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . mysqli_error($conn);
     }
     mysqli_stmt_close($stmt);
 
     return $tasks;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +46,8 @@ function fetchTasksByStatus($status) {
     <script src="scripts/kanban.js" defer></script>
 
     <meta name="author" content="Group 5"/>
-    <meta name="description" content="Task Statistics"/>
-    <title>Task Statistics</title>
+    <meta name="description" content="Kanban"/>
+    <title>Kanban</title>
 </head>
 
 <body>
@@ -58,19 +65,27 @@ function fetchTasksByStatus($status) {
                     <div class="filter <?php echo ($status == "Pending" ? "info" : ($status == "In Progress" ? "warning" : "success")); ?>">
                         <h3><?php echo $status; ?></h3>
                         <div>
-                            <!-- Sort functions will need JS adjustments or can be implemented with PHP sorting -->
                             <button onclick="sortListByDate('<?php echo $columnId; ?>')">Sort by Due Date</button>
                             <button onclick="sortListByPriority('<?php echo $columnId; ?>')">Sort by Priority</button>
                         </div>
                     </div>
                     <?php
                     foreach ($tasks as $task) {
-                        echo "<div class='task' ";
-                        echo "data-due-date='" . htmlspecialchars($task["deadline"]) . "' ";
-                        echo "data-priority='" . htmlspecialchars($task["priority"]) . "'>";
+                        echo "<div class='task' data-due-date='" . htmlspecialchars($task["deadline"]) . "' data-priority='" . htmlspecialchars($task["priority"]) . "'>";
                         echo "<strong>" . htmlspecialchars($task["taskName"]) . "</strong><br>";
                         echo "Due Date: " . htmlspecialchars($task["deadline"]) . "<br>";
                         echo "Priority: " . htmlspecialchars($task["priority"]) . "<br>";
+                        echo "Assigned Team: " . htmlspecialchars($task["teamName"]) . "<br>";
+
+                        // If patient information is available, display it
+                        if (!empty($task["patientFirstName"]) && !empty($task["patientLastName"])) {
+                            echo "Patient: " . htmlspecialchars($task["patientFirstName"]) . " " . htmlspecialchars($task["patientLastName"]) . "<br>";
+
+                            // If room information is available, display it
+                            if (!empty($task["roomNumber"]) && !empty($task["roomType"])) {
+                                echo "Room: " . htmlspecialchars($task["roomNumber"]) . " (" . htmlspecialchars($task["roomType"]) . ")<br>";
+                            }
+                        }
                         echo "</div>";
                     }
                     ?>
