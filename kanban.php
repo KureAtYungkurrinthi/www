@@ -86,6 +86,9 @@ function fetchTasksByStatus($status) {
                                 echo "Room: " . htmlspecialchars($task["roomNumber"]) . " (" . htmlspecialchars($task["roomType"]) . ")<br>";
                             }
                         }
+                        echo '<a href="actions/pendingTask.php?taskID=' . $task['taskID'] . '">Pending</a>' . " | ";
+                        echo '<a href="actions/progressTask.php?taskID=' . $task['taskID'] . '">Progress</a>' . " | ";
+                        echo '<a href="actions/completeTask.php?taskID=' . $task['taskID'] . '">Completed</a>';
                         echo "</div>";
                     }
                     ?>
