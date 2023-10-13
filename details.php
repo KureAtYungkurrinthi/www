@@ -143,8 +143,8 @@ if (isset($_GET['roomID'])) {
             if ($result = mysqli_query($conn, $sql)) {
                 if ($row = mysqli_fetch_assoc($result)) {
                     echo '<form id="details-form" action="actions/updateDetails.php" method="post">';
-                    echo '<label>Details: </label><textarea name="patientDetails" readonly>' . htmlentities($row['patientDetails']) . '</textarea><br>';
-                    echo '<label>Notes: </label><textarea name="notes" readonly>' . htmlentities($row['notes']) . '</textarea><br>';
+                    echo '<label>Details: </label><textarea name="patientDetails" readonly>' . $row['patientDetails'] . '</textarea><br>';
+                    echo '<label>Notes: </label><textarea name="notes" readonly>' . $row['notes'] . '</textarea><br>';
                     echo '<input type="hidden" name="patientID" value="' . $row['patientID'] . '">';
                     echo '<button type="button" id="edit-details-btn">Edit</button>';
                     echo '<button type="submit" id="submit-details-btn" style="display:none;">Submit</button>';
@@ -193,7 +193,8 @@ if (isset($_GET['roomID'])) {
                     WHERE patientID IN (
                     SELECT patientID 
                     FROM Patients 
-                    WHERE roomID=? AND dischargeDate IS NULL);";
+                    WHERE roomID=? AND dischargeDate IS NULL)
+                    AND Tasks.status <> 'Completed';";
 
             if ($stmt = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($stmt, "i", $roomID); // binding roomID instead of patientID
@@ -211,6 +212,7 @@ if (isset($_GET['roomID'])) {
                         echo "Deadline: " . htmlentities($row["deadline"]) . "<br>";
                         echo "Status: " . htmlentities($row["status"]) . "<br>";
                         echo "Priority: " . htmlentities($row["priority"]) . "<br>";
+                        echo '<a href="actions/completeTask.php?taskID=' . $row['taskID'] . '">Mark as Completed</a>' . " | ";
                         echo '<a href="actions/deleteTask.php?taskID=' . $row['taskID'] . '">Delete Task</a>';
                         echo "</li>";
                     }
