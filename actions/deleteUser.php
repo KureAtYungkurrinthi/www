@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             mysqli_stmt_bind_param($statement, 'i', $userID);
             if (mysqli_stmt_execute($statement)) {
                 echo "User deleted successfully.";
-                header("Location: ../users.php");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit();
             } else {
                 echo "Error deleting user: " . mysqli_stmt_error($statement);

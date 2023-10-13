@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($statement, 'ss', $teamId, $userId);
             if (mysqli_stmt_execute($statement)) {
                 echo "Team assigned successfully.";
-                header("Location: ../users.php");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit();
             } else {
                 echo "Error assigning team: " . mysqli_stmt_error($statement);

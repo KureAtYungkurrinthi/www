@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, 'si', $dischargeDate, $roomID);
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: ../index.php?discharge=success");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_stmt_error($stmt);
             }

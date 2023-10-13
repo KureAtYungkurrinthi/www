@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
             // Execute statement
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: ../index.php");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }

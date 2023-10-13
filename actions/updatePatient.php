@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($statement, 'sssi', $firstName, $lastName, $admitDate, $patientID);
 
             if (mysqli_stmt_execute($statement)) {
-                header("Location: ../index.php");
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }

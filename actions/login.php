@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     session_start();
                     $_SESSION["user_email"] = $email;
                     $_SESSION["user_name"] = $row['firstName'] . " " . $row['lastName'];
-                    header("Location: ../index.php");
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                     exit();
                 }
             }

@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, 'ssi', $patientDetails, $notes, $patientID);
             // Execute prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: ../index.php"); // Redirect back to your form page or a success page
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
