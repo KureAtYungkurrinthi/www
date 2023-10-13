@@ -62,7 +62,7 @@ if (isset($_GET['roomID'])) {
             $sql = "SELECT * FROM Patients WHERE roomID=$roomID AND dischargeDate IS NULL;";
             if ($result = mysqli_query($conn, $sql)) {
                 if ($row = mysqli_fetch_assoc($result)) {
-                    echo '<form id="patient-form" action="update_patient.php" method="post">';
+                    echo '<form id="patient-form" action="actions/updatePatient.php" method="post">';
                     echo '<label>Name: </label><input type="text" name="name" value="' . htmlentities($row['firstName'] . ' ' . $row['lastName']) . '" readonly><br>';
                     echo '<label>Gender: </label><input type="text" name="gender" value="' . htmlentities($row['gender']) . '" readonly><br>';
                     echo '<label>Age: </label><input type="text" name="age" value="' . htmlentities(date_diff(date_create($row['DOB']), date_create('today'))->y) . '" readonly><br>';
@@ -84,12 +84,8 @@ if (isset($_GET['roomID'])) {
 
         <section id="patient-management">
             <h1>Patient Management</h1>
-            <form action="discharge.php" method="post">
-                <input type="hidden" name="roomID" value="<?php echo $_GET['roomID'] ?? '1'; ?>">
-                <input type="submit" value="Discharge Current Patient">
-            </form>
-
             <?php
+            $roomID = $_GET['roomID'] ?? '1';
             $sql = "SELECT * FROM Patients WHERE roomID = ? AND dischargeDate IS NULL;";
             if ($stmt = mysqli_prepare($conn, $sql)) {
                 mysqli_stmt_bind_param($stmt, "i", $roomID);
@@ -99,16 +95,32 @@ if (isset($_GET['roomID'])) {
 
                     if (mysqli_num_rows($result) == 0) {
                         // No patient is currently assigned to the room, show admission form
-                        echo '<form action="admit.php" method="post">';
+                        echo '<form action="actions/admit.php" method="post">';
                         echo '<label for="firstName">First Name:</label>';
-                        echo '<input type="text" id="firstName" name="firstName" required>';
-                        // Additional patient input fields here...
-                        echo '<input type="submit" value="Admit Patient">';
+                        echo '<input type="text" id="firstName" name="firstName" required><br>';
+                        echo '<label for="lastName">Last Name:</label>';
+                        echo '<input type="text" name="lastName" required><br>';
+                        echo '<label for="gender">Gender: </label>';
+                        echo '<select name="gender" required>';
+                        echo '<option value="Male">Male</option>';
+                        echo '<option value="Female">Female</option>';
+                        echo '<option value="Other">Other</option>';
+                        echo '</select><br>';
+                        echo '<label for="DOB">Date of Birth: </label>';
+                        echo '<input type="date" name="DOB" required><br>';
+                        echo '<label for="admitDate">Admit Date: </label>';
+                        echo '<input type="date" name="admitDate" required><br>';
+                        echo '<input type="hidden" name="roomID" value="'. htmlspecialchars($roomID) .'">';
+                        echo '<input type="submit" value="Admit New Patient">';
                         echo '</form>';
                     } else {
                         // A patient is currently assigned to the room, don’t show the admission form
                         echo '<h2>Patient is currently assigned to this room.</h2>';
-                        // Optionally: Display patient info here...
+                        // Discharge form
+                        echo '<form action="actions/discharge.php" method="post">';
+                        echo '<input type="hidden" name="roomID" value="'. htmlspecialchars($roomID) .'">';
+                        echo '<input type="submit" value="Discharge Current Patient">';
+                        echo '</form>';
                     }
 
                     mysqli_free_result($result);
@@ -130,7 +142,7 @@ if (isset($_GET['roomID'])) {
             $sql = "SELECT * FROM Patients WHERE roomID=$roomID AND dischargeDate IS NULL;";
             if ($result = mysqli_query($conn, $sql)) {
                 if ($row = mysqli_fetch_assoc($result)) {
-                    echo '<form id="details-form" action="update_details.php" method="post">';
+                    echo '<form id="details-form" action="actions/updateDetails.php" method="post">';
                     echo '<label>Details: </label><textarea name="patientDetails" readonly>' . htmlentities($row['patientDetails']) . '</textarea><br>';
                     echo '<label>Notes: </label><textarea name="notes" readonly>' . htmlentities($row['notes']) . '</textarea><br>';
                     echo '<input type="hidden" name="patientID" value="' . $row['patientID'] . '">';
@@ -139,7 +151,7 @@ if (isset($_GET['roomID'])) {
                     echo '<button type="button" id="cancel-details-btn" style="display:none;">Cancel</button>';
                     echo '</form>';
                 } else {
-                    echo "<p>No patient details available for Patient ID: $patientID</p>";
+                    echo "<p>No patient details available for this room.</p>";
                 }
                 mysqli_free_result($result);
             } else {
@@ -150,7 +162,8 @@ if (isset($_GET['roomID'])) {
             <label>Documents:</label>
             <div id="documents-list">
                 <?php
-                $sqlDocs = "SELECT * FROM PatientDocuments WHERE patientID=$patientID;";
+                $sqlDocs = "SELECT * FROM PatientDocuments WHERE patientID IN (SELECT patientID FROM Patients WHERE roomID=$roomID AND dischargeDate IS NULL);";
+
                 if ($resultDocs = mysqli_query($conn, $sqlDocs)) {
                     while ($rowDoc = mysqli_fetch_assoc($resultDocs)) {
                         echo '<div class="document" data-docid="' . $rowDoc['documentID'] . '">';
@@ -174,10 +187,16 @@ if (isset($_GET['roomID'])) {
 
             <h2>Current Tasks</h2>
             <?php
-            $sql = "SELECT Tasks.*, Teams.teamName FROM Tasks LEFT JOIN Teams ON Tasks.assigneeTeamID = Teams.teamID WHERE patientID = ?;";
+            $sql = "SELECT Tasks.*, Teams.teamName 
+                    FROM Tasks 
+                    LEFT JOIN Teams ON Tasks.assigneeTeamID = Teams.teamID 
+                    WHERE patientID IN (
+                    SELECT patientID 
+                    FROM Patients 
+                    WHERE roomID=? AND dischargeDate IS NULL);";
 
             if ($stmt = mysqli_prepare($conn, $sql)) {
-                mysqli_stmt_bind_param($stmt, "i", $patientID);
+                mysqli_stmt_bind_param($stmt, "i", $roomID); // binding roomID instead of patientID
 
                 if (mysqli_stmt_execute($stmt)) {
                     $result = mysqli_stmt_get_result($stmt);
@@ -192,7 +211,7 @@ if (isset($_GET['roomID'])) {
                         echo "Deadline: " . htmlentities($row["deadline"]) . "<br>";
                         echo "Status: " . htmlentities($row["status"]) . "<br>";
                         echo "Priority: " . htmlentities($row["priority"]) . "<br>";
-                        echo '<a href="delete_task.php?taskID=' . $row['taskID'] . '">Delete Task</a>';
+                        echo '<a href="actions/deleteTask.php?taskID=' . $row['taskID'] . '">Delete Task</a>';
                         echo "</li>";
                     }
                     echo "</ul>";
@@ -207,7 +226,7 @@ if (isset($_GET['roomID'])) {
             ?>
 
             <h2>Add New Task</h2>
-            <form action="add_task.php" method="post">
+            <form action="actions/addTask.php" method="post">
                 <label for="taskName">Task Name:</label>
                 <input type="text" name="taskName" required><br>
                 <label for="taskDescription">Task Description:</label>
@@ -232,7 +251,7 @@ if (isset($_GET['roomID'])) {
                     <option value="Medium">Medium</option>
                     <option value="Low">Low</option>
                 </select><br>
-                <input type="hidden" name="patientID" value="<?php echo $patientID; ?>">
+                <input type="hidden" name="roomID" value="<?php echo $roomID; ?>">
                 <input type="submit" value="Add Task">
             </form>
         </section>
