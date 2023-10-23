@@ -1,0 +1,84 @@
+/* Task Board and Columns */
+
+.task-board {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+.task-column {
+    flex: 1;
+    border: 1px solid #ccc;
+    min-width: 300px;
+    height: 700px;
+    overflow-y: auto;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #eee;
+}
+
+.filter,
+h3 {
+    padding: 10px;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+
+/* Task Styles */
+
+.task {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+
+/* Buttons and Task Content */
+
+.task-add-btn,
+.task-content {
+    float: right;
+    font-weight: bolder;
+}
+
+.task-content {
+    font-size: 16px;
+}
+
+.custom-button {
+    background-color: #0E0E52;
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    margin: 10px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+#hPriority {
+    float: right;
+    color: #fb7d44;
+}
+
+#mPriority {
+    float: right;
+    color: #f4ce46;
+}
+
+#lPriority {
+    float: right;
+    color: #2faf65;
+}

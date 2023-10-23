@@ -1,0 +1,44 @@
+* {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+html {
+    background-color: #fdf2e9;
+}
+
+body {
+    width: 400px;
+    background-color: white;
+    border: 1px solid #d2d2d2;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+label:not(#remember) input {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    margin: 10px auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    border: none;
+    background-color: #ff8f00;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 25px;
+}
+
+button:hover {
+    background-color: #f57c00;
+}
+
+#remember {
+    float: right;
+}

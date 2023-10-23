@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="styles/login.css" rel="stylesheet"/>
+    <meta content="Group 5" name="author"/>
+    <meta content="Login Page" name="description"/>
+    <title>Login Page</title>
+</head>
+
+<body>
+<h1>Welcome to Flinders Care</h1>
+<form action="actions/login.php" method="post">
+    <label> Email
+        <input name="email" placeholder="Enter Email" required type="email"/>
+    </label>
+    <label> Password
+        <input name="password" placeholder="Enter Password" required type="password"/>
+    </label>
+    <button type="submit">Login</button>
+    <label id="remember">
+        <input checked="checked" name="remember" type="checkbox"> Remember me
+    </label>
+</form>
+</body>
+
+</html>
